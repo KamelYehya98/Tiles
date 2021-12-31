@@ -1,6 +1,7 @@
 const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
 const port = process.env.PORT || 3001
@@ -170,6 +171,28 @@ app.post('/getScores', async (req, res)=>{
     res.send(result);
 });
 
-app.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
+// app.get('/*', function (req, res) {
+//     res.sendFile(path.join(__dirname, 'build', 'index.html'));
+// });
+
+//checking if app is running on Heroku
+if (process.env.NODE_ENV === 'production')
+{
+  //starts React from build folder
+  app.use(express.static(path.resolve(__dirname, './client/build')));
+
+  //for reconnecting purposes
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, './client/build', 'index.html'));
+  });
+}
+else
+{
+  //app running locally
+  app.use(express.static(path.resolve(__dirname, './client/build')));
+
+  //for reconnecting purposes
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, './client/build', 'index.html'));
+  });
+}
