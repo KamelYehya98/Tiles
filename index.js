@@ -22,6 +22,11 @@ const db = mysql.createConnection({
     database: 'epiz_30694021_unmatch_the_tiles'
 });
 
+db.connect((err) => {
+    if (err) throw err;
+    console.log('Connected To Database Successfully');
+});
+
 app.listen(port, ()=>{
     console.log("Server is running on port " + port);
 });
