@@ -17,7 +17,7 @@ app.use(express.json());
 
 const db = mysql.createConnection({
     user: 'epiz_30694021',
-    password: '81061889',
+    password: '12g58TBTttu',
     host: 'sql108.epizy.com',
     database: 'epiz_30694021_unmatch_the_tiles'
 });
