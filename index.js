@@ -19,7 +19,8 @@ const db = mysql.createConnection({
     user: 'epiz_30694021',
     password: '12g58TBTttu',
     host: 'sql108.epizy.com',
-    database: 'epiz_30694021_unmatch_the_tiles'
+    database: 'epiz_30694021_unmatch_the_tiles',
+    port: '3306'
 });
 
 db.connect((err) => {
